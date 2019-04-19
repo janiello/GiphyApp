@@ -1,5 +1,5 @@
 // Create an array containing the default games for the user to click
-var games = ["Halo", "Assassin's Creed", "Call of Duty", "Rocket League", "Fortnite"];
+var games = ["Halo 2", "Assassin's Creed", "Call of Duty", "Rocket League", "Fortnite"];
 // Create a function that will create the buttons based on user input
 function AddGame () {
     // Delete items before adding them to avoid duplicate buttons
@@ -36,7 +36,7 @@ AddGame();
 function getGiphyWithIt() {
     var game = $(this).attr("data-game");
     // Set API lnk to a variable
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + game + "&api_key=MIyFpe8ISOwioUTTFZqNTRdH9z7TCluk"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + game + "&limit=8&api_key=MIyFpe8ISOwioUTTFZqNTRdH9z7TCluk"
     // Make the ajax call to retrieve gifs when user clicks any game button
     $.ajax({
         url: queryURL,
@@ -44,15 +44,32 @@ function getGiphyWithIt() {
     }).then(function(retrieve) {
         // Store the ajax data in a variable to call on later
         var gifs = retrieve.data;
-        // Without console logging, I want the data from the ajax call to go somewhere on the actual page
-        var gameDiv = $("<div class='game'>")
-        // Pull the rating of each gif to display in each gameDiv
-        var rating = gifs[0].analytics.rating;
-        // Create an element to put the rating into
-        var r = $("<p>").text("Rating: " + rating);
-        // Add the rating element to the gameDiv
-        gameDiv.append(r);
-    })
-}
+        // I need to loop through each button in my array in order to create each element needed below
+        for (g = 0; g < games.length; g++) {
+            // Without console logging, I want the data from the ajax call to go somewhere on the actual page
+            var gameDiv = $("<div class='game'>")
+            // Pull the rating of each gif to display in each gameDiv
+            var rating = gifs[0].rating;
+            // Create an element to put the rating into
+            var r = $("<p>").text("Rating: " + rating);
+            // Add the rating element to the gameDiv
+            gameDiv.append(r);
+            // Create an image tag element for the gifs to appear
+            var gameGif = $("<img>");
+            // Set the src attribute of the image element to the appropriate property to pull the gif
+            gameGif.attr("src", gifs[g].images.fixed_height.url);
+            // Add the gif element I just created to the overarching gameDiv
+            gameDiv.append(gameGif);
+            // Prepend each dynamically created gameDiv to the global gif container ("game-portal")
+            $("#game-portal").prepend(gameDiv);
+        };
+    });
+};
 // Click event that runs the above function when any button with the "game-btn" class is clicked
 $(document).on("click", ".game-btn", getGiphyWithIt);
+
+// Play/Pause functionality
+    // Pull the still images from the giphy data
+    // Set the gifs to the still images upon clicking the game buttons
+    // Make the still images clickable so as to play the gif after being clicked
+    // Click the gif again and it goes back to the still image
