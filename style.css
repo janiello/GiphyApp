@@ -1,0 +1,36 @@
+#buttons {
+    margin: 10px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+#game-form {
+    padding: 10px;
+    margin: 10px;
+}
+
+.game {
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+
+label {
+    font-weight: bolder;
+    color: goldenrod;
+}
+
+p {
+    color: goldenrod;
+}
+
+body {
+    background-image: url("background.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

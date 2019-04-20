@@ -4,13 +4,15 @@
         <meta charset="UTF-8">
         <title>Giphy App</title>
         <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div id="buttons"></div>
         <form id="game-form">
-            <label for="game-input">Make a game button:</label>
+            <label for="game-input">Make a new game button:</label>
             <input type="text" id="game-input">
-            <input type="submit" id="add-game" value="Add Game">
+            <input class="btn btn-success" type="submit" id="add-game" value="Add Game">
         </form>
         <div id="game-portal"></div>
         <script src="giphy.js"></script>

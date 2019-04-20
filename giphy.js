@@ -7,9 +7,9 @@ function AddGame () {
     // Loop through the empty array above...
     for (g = 0; g < games.length; g++) {
         // Dynamically create button elements by assigning them to a variable
-        var newButton = $("<button>");
+        var newButton = $("<button type='button'>");
         // Give new button element a class (since there will be multiple buttons running the same general function)
-        newButton.addClass("game-btn");
+        newButton.addClass("btn btn-primary");
         // Give the button a data attribute (based on the user input) to get API data
         newButton.attr("data-game", games[g]);
         // Give each new button text based on what the user enters in the text field
@@ -18,7 +18,7 @@ function AddGame () {
         $("#buttons").append(newButton);
     }
 }
-// Create a click event that will tell this function the run
+// Create a click event that will tell this function to run
 // Grab the element that should be clicked and create an onclick function
 $("#add-game").on("click", function(event) {
     // Prevent the submit button from doing anything until the user clicks on it
@@ -55,7 +55,7 @@ function getGiphyWithIt() {
             // Add the rating element to the gameDiv
             gameDiv.append(r);
             // Create an image tag element for the gifs to appear
-            var gameGif = $("<img>");
+            var gameGif = $("<img class='img-thumbnail'>");
             // Set the src attribute of the image element to the appropriate property to pull the gif's still image
             gameGif.attr("src", gifs[g].images.fixed_height_still.url);
             // Play/Pause functionality
@@ -90,4 +90,4 @@ function getGiphyWithIt() {
     });
 };
 // Click event that runs the above function when any button with the "game-btn" class is clicked
-$(document).on("click", ".game-btn", getGiphyWithIt);
+$(document).on("click", ".btn", getGiphyWithIt);
