@@ -1,5 +1,5 @@
 // Create an array containing the default games for the user to click
-var games = ["Halo 2", "Assassin's Creed", "Call of Duty", "Rocket League", "Fortnite"];
+var games = ["Halo 2", "Assassin's Creed", "Call of Duty", "Rocket League", "Fortnite", "Borderlands", "Battlefield V", "Far Cry 5", "Apex Legends", "Portal 2"];
 // Create a function that will create the buttons based on user input
 function AddGame () {
     // Delete items before adding them to avoid duplicate buttons
@@ -36,7 +36,7 @@ AddGame();
 function getGiphyWithIt() {
     var game = $(this).attr("data-game");
     // Set API lnk to a variable
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + game + "&limit=8&api_key=MIyFpe8ISOwioUTTFZqNTRdH9z7TCluk"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + game + "&limit=10&api_key=MIyFpe8ISOwioUTTFZqNTRdH9z7TCluk"
     // Make the ajax call to retrieve gifs when user clicks any game button
     $.ajax({
         url: queryURL,
