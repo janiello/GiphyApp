@@ -65,14 +65,12 @@ function getGiphyWithIt() {
             gameGif.attr("data-animate", gifs[g].images.fixed_height.url);
             // Set the gifs to the still images upon clicking the game buttons with a "data-state" attribute
             gameGif.attr("data-state", "still");
-            // Set the images to a class so that a click function will work for every image
-            gameGif.addClass("gif");
             // Add the gif element I just created to the overarching gameDiv
             gameDiv.append(gameGif);
             // Prepend each dynamically created gameDiv to the global gif container ("game-portal")
             $("#game-portal").prepend(gameDiv);
             // Click function that will change the data-state attribute of each image
-            $(".gif").on("click", function() {
+            gameGif.on("click", function() {
                 // Set the data-state attribute to a variable
                 var state = $(this).attr("data-state");
                 // Each gif is appended to the page as a still image
