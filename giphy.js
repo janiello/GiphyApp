@@ -56,20 +56,40 @@ function getGiphyWithIt() {
             gameDiv.append(r);
             // Create an image tag element for the gifs to appear
             var gameGif = $("<img>");
-            // Set the src attribute of the image element to the appropriate property to pull the gif
-            gameGif.attr("src", gifs[g].images.fixed_height.url);
+            // Set the src attribute of the image element to the appropriate property to pull the gif's still image
+            gameGif.attr("src", gifs[g].images.fixed_height_still.url);
+            // Play/Pause functionality
+            // Give the image tag a "data-still" attribute for the still image...
+            gameGif.attr("data-still", gifs[g].images.fixed_height_still.url);
+            // Set a "data-animate" attribute and set it to the gif...
+            gameGif.attr("data-animate", gifs[g].images.fixed_height.url);
+            // Set the gifs to the still images upon clicking the game buttons with a "data-state" attribute
+            gameGif.attr("data-state", "still");
+            // Set the images to a class so that a click function will work for every image
+            gameGif.addClass("gif");
             // Add the gif element I just created to the overarching gameDiv
             gameDiv.append(gameGif);
             // Prepend each dynamically created gameDiv to the global gif container ("game-portal")
             $("#game-portal").prepend(gameDiv);
+            // Click function that will change the data-state attribute of each image
+            $(".gif").on("click", function() {
+                // Set the data-state attribute to a variable
+                var state = $(this).attr("data-state");
+                // Each gif is appended to the page as a still image
+                if (state === "still") {
+                    // I want to change the still image to the "data-animate" image upon clicking on it
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    // I also want the "state" of the image to change from "still" to "animate"
+                    $(this).attr("data-state", "animate");
+                } else {
+                    // Otherwise, if the gif is clicked again, the animation goes back to the still image
+                    $(this).attr("src", $(this).attr("data-still"));
+                    // And the "state" gets changed back from "animate" to "still"
+                    $(this).attr("data-state", "still");
+                }
+            })
         };
     });
 };
 // Click event that runs the above function when any button with the "game-btn" class is clicked
 $(document).on("click", ".game-btn", getGiphyWithIt);
-
-// Play/Pause functionality
-    // Pull the still images from the giphy data
-    // Set the gifs to the still images upon clicking the game buttons
-    // Make the still images clickable so as to play the gif after being clicked
-    // Click the gif again and it goes back to the still image
