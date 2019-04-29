@@ -29,6 +29,8 @@ $("#add-game").on("click", function(event) {
     games.push(newGame);
     // Call the AddGame function so when the user clicks "submit", the new button will appear
     AddGame();
+    // Empty the text box
+    $("#game-input").val("");
 });
 // Call the AddGame function outside of the click event to render the default game buttons on page load
 AddGame();
@@ -89,5 +91,5 @@ function getGiphyWithIt() {
         };
     });
 };
-// Click event that runs the above function when any button with the "game-btn" class is clicked
-$(document).on("click", ".btn", getGiphyWithIt);
+// Click event that runs the above function when any button with the "btn-primary" class is clicked
+$(document).on("click", ".btn-primary", getGiphyWithIt);
