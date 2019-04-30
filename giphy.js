@@ -3,7 +3,7 @@ var games = ["Halo 2", "Assassin's Creed", "Call of Duty", "Rocket League", "For
 // Create a function that will create the buttons based on user input
 function AddGame () {
     // Delete items before adding them to avoid duplicate buttons
-    $("#buttons").empty();
+    // $("#buttons").empty();
     // Loop through the empty array above...
     for (g = 0; g < games.length; g++) {
         // Dynamically create button elements by assigning them to a variable
@@ -16,8 +16,8 @@ function AddGame () {
         newButton.text(games[g]);
         // Add the new button to the end of the "buttons" div
         $("#buttons").append(newButton);
-    }
-}
+    };
+};
 // Create a click event that will tell this function to run
 // Grab the element that should be clicked and create an onclick function
 $("#add-game").on("click", function(event) {
@@ -27,8 +27,14 @@ $("#add-game").on("click", function(event) {
     var newGame = $("#game-input").val().trim();
     // Push the user input to the empty array
     games.push(newGame);
+    // Append a new button element to the "buttons" div on each click
+    $("#buttons").append("<button type='button' class='btn btn-primary' data-game='" + newGame + "'>" + newGame + "</button>");
+    // If no game is entered and the Add Game button is clicked, nothing happens
+    if (newGame = "") {
+        event.preventDefault();
+    };
     // Call the AddGame function so when the user clicks "submit", the new button will appear
-    AddGame();
+    // AddGame();
     // Empty the text box
     $("#game-input").val("");
 });
@@ -87,7 +93,7 @@ function getGiphyWithIt() {
                     // And the "state" gets changed back from "animate" to "still"
                     $(this).attr("data-state", "still");
                 }
-            })
+            });
         };
     });
 };
